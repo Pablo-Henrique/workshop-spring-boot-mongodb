@@ -1,13 +1,13 @@
 package com.workshop.dto;
 
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 
 import java.io.Serial;
 import java.io.Serializable;
 
 @Data
+@NoArgsConstructor
 public class UserDTO implements Serializable {
 
     @Serial
