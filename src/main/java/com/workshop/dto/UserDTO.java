@@ -1,7 +1,8 @@
 package com.workshop.dto;
 
-import lombok.*;
-import org.springframework.data.annotation.Id;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -13,7 +14,7 @@ public class UserDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = -6415235214704777746L;
 
-    @Id
+    @NonNull
     private String id;
 
     @NonNull

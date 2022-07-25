@@ -21,6 +21,10 @@ public class UserMapper {
         return mapper.map(entity, UserDTO.class);
     }
 
+    public User converterDtoToEntity(UserDTO dto) {
+        return mapper.map(dto, User.class);
+    }
+
     public List<UserDTO> converterListEntityToDTO(List<User> entity) {
         return entity.stream().map(this::converterEntityToDTO).collect(Collectors.toList());
     }
