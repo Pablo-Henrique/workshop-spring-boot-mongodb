@@ -4,6 +4,7 @@ import com.workshop.handler.exception.ResourceNotFoundException;
 import com.workshop.model.User;
 import com.workshop.repository.UserRepository;
 import com.workshop.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +34,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(String id) {
         repository.delete(findById(id));
+    }
+
+    @Override
+    public User update(String id, User user) {
+        User updatedUser = findById(id);
+        BeanUtils.copyProperties(user, updatedUser, "id");
+        return repository.save(updatedUser);
     }
 }

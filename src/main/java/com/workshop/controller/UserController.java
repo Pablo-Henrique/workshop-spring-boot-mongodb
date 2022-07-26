@@ -47,4 +47,10 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    @PutMapping(path = "/user/update/{id}")
+    public ResponseEntity<UserDTO> update(@PathVariable(value = "id") String id,@RequestBody UserDTO userDTO) {
+        User user = service.update(id, mapper.converterDtoToEntity(userDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body(mapper.converterEntityToDTO(user));
+    }
+
 }
