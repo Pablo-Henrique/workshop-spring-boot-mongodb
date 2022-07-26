@@ -29,4 +29,9 @@ public class UserServiceImpl implements UserService {
     public User insert(User user) {
         return repository.insert(user);
     }
+
+    @Override
+    public void delete(String id) {
+        repository.delete(findById(id));
+    }
 }
