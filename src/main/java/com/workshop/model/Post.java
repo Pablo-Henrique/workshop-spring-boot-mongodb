@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @Data
 @AllArgsConstructor
-@Document(value = "Post")
+@Document(value = "post")
 public class Post implements Serializable {
 
     @Serial
