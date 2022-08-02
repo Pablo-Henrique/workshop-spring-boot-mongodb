@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -29,7 +30,7 @@ public class Post implements Serializable {
     private String body;
     private AuthorDTO author;
 
-    private List<CommentDTO> comments;
+    private final List<CommentDTO> comments = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
