@@ -1,7 +1,10 @@
 package com.workshop.controller;
 
+import com.workshop.dto.AuthorDTO;
 import com.workshop.dto.UserDTO;
+import com.workshop.mapper.PostMapper;
 import com.workshop.mapper.UserMapper;
+import com.workshop.model.Post;
 import com.workshop.model.User;
 import com.workshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,22 +24,28 @@ public class UserController {
     private UserService service;
 
     @Autowired
-    private UserMapper mapper;
+    private UserMapper userMapper;
 
     @GetMapping(path = "/users")
     public ResponseEntity<List<UserDTO>> findAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(mapper.converterListEntityToDTO(service.findAll()));
+        return ResponseEntity.status(HttpStatus.OK).body(userMapper.converterListEntityToDTO(service.findAll()));
     }
 
     @GetMapping(path = "/user/{id}")
     public ResponseEntity<UserDTO> findById(@PathVariable(value = "id") String id){
-        UserDTO response = mapper.converterEntityToDTO(service.findById(id));
+        UserDTO response = userMapper.converterEntityToDTO(service.findById(id));
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping(path = "/user/{id}/posts")
+    public ResponseEntity<List<Post>> findAllPosts(@PathVariable(value = "id") String id){
+        User user = service.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(user.getPosts());
     }
 
     @PostMapping(path = "/user")
     public ResponseEntity<URI> insert(@RequestBody UserDTO userDTO) {
-        User user = service.insert(mapper.converterDtoToEntity(userDTO));
+        User user = service.insert(userMapper.converterDtoToEntity(userDTO));
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
         return ResponseEntity.status(HttpStatus.CREATED).body(uri);
     }
@@ -49,8 +58,8 @@ public class UserController {
 
     @PutMapping(path = "/user/update/{id}")
     public ResponseEntity<UserDTO> update(@PathVariable(value = "id") String id,@RequestBody UserDTO userDTO) {
-        User user = service.update(id, mapper.converterDtoToEntity(userDTO));
-        return ResponseEntity.status(HttpStatus.CREATED).body(mapper.converterEntityToDTO(user));
+        User user = service.update(id, userMapper.converterDtoToEntity(userDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body(userMapper.converterEntityToDTO(user));
     }
 
 }
