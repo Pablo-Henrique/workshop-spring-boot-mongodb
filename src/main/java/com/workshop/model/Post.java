@@ -1,6 +1,7 @@
 package com.workshop.model;
 
 import com.workshop.dto.AuthorDTO;
+import com.workshop.dto.CommentDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -9,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Data
@@ -27,6 +29,8 @@ public class Post implements Serializable {
     private String body;
     private AuthorDTO author;
 
+    private List<CommentDTO> comments;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -39,6 +43,5 @@ public class Post implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
-
 
 }
