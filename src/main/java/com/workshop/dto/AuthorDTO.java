@@ -1,14 +1,15 @@
 package com.workshop.dto;
 
-import lombok.AllArgsConstructor;
+import com.workshop.model.User;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
 
 @Data
-@AllArgsConstructor
-public class PostDTO implements Serializable {
+@NoArgsConstructor
+public class AuthorDTO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 7662381501090821364L;
@@ -16,4 +17,8 @@ public class PostDTO implements Serializable {
     private String id;
     private String name;
 
+    public AuthorDTO(User user) {
+        id = user.getId();
+        name = user.getName();
+    }
 }
