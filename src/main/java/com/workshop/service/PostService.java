@@ -15,4 +15,6 @@ public interface PostService {
     void delete(String id);
 
     Post update(String id, Post updatedPost);
+
+    List<Post> findByTitleContainingIgnoreCase(String title);
 }

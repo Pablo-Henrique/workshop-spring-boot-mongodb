@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Objects;
 
 @Data
-@AllArgsConstructor
 @Document(value = "post")
 public class Post implements Serializable {
 
@@ -30,7 +29,15 @@ public class Post implements Serializable {
     private String body;
     private AuthorDTO author;
 
-    private final List<CommentDTO> comments = new ArrayList<>();
+    private List<CommentDTO> comments = new ArrayList<>();
+
+    public Post(String id, Date date, String title, String body, AuthorDTO author) {
+        this.id = id;
+        this.date = date;
+        this.title = title;
+        this.body = body;
+        this.author = author;
+    }
 
     @Override
     public boolean equals(Object o) {

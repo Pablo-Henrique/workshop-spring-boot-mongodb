@@ -42,4 +42,9 @@ public class PostServiceImpl implements PostService {
         BeanUtils.copyProperties(post, updatedPost, "id");
         return repository.save(updatedPost);
     }
+
+    @Override
+    public List<Post> findByTitleContainingIgnoreCase(String title) {
+        return repository.findByTitleContainingIgnoreCase(title);
+    }
 }
