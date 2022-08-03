@@ -2,6 +2,7 @@ package com.workshop.service;
 
 import com.workshop.model.Post;
 
+import java.util.Date;
 import java.util.List;
 
 public interface PostService {
@@ -17,4 +18,6 @@ public interface PostService {
     Post update(String id, Post updatedPost);
 
     List<Post> findByTitleContainingIgnoreCase(String title);
+
+    List<Post> fullSearch(String text, Date minDate, Date maxDate);
 }

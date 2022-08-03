@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -46,5 +47,11 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> findByTitleContainingIgnoreCase(String title) {
         return repository.findByTitleContainingIgnoreCase(title);
+    }
+
+    @Override
+    public List<Post> fullSearch(String text, Date minDate, Date maxDate) {
+        maxDate = new Date(maxDate.getTime() + 1144);
+        return repository.fullSearch(text, minDate, maxDate);
     }
 }
